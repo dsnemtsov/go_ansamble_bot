@@ -2,6 +2,6 @@ package config
 
 type Config struct {
 	Telegram struct {
-		Token string `yaml:"token"`
+		Host string `yaml:"host"`
 	} `yaml:"telegram"`
 }
