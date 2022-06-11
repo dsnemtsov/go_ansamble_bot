@@ -1,6 +1,7 @@
 package process
 
 import (
+	"go_ensemble_bot/internal/ui/keyboard"
 	"gopkg.in/telebot.v3"
 	tele "gopkg.in/telebot.v3"
 )
@@ -12,6 +13,10 @@ func Do(b *telebot.Bot) {
 
 	b.Handle("/yandex_disc", func(c tele.Context) error {
 		return c.Send("https://disk.yandex.ru/d/2OuuGeT8TxJu_w")
+	})
+
+	b.Handle("/nevesomo", func(c tele.Context) error {
+		return c.Send("В. Меладзе - Невесомо", keyboard.NevesomoInlineKeyboard())
 	})
 
 }
