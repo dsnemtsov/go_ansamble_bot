@@ -1,30 +1,34 @@
 package main
 
 import (
-	"fmt"
-	"go_ensemble_bot/clients/telegram"
 	"go_ensemble_bot/internal/config"
+	"go_ensemble_bot/internal/process"
+	tele "gopkg.in/telebot.v3"
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
+	"time"
 )
 
 const configPath = "config.yml"
 
 func main() {
-	token := os.Getenv("tg_ensemble_bot_token")
-	cfg := Config(configPath)
+	//cfg := Config(configPath)
 
-	tgClient := telegram.New(cfg.Telegram.Host, token)
+	pref := tele.Settings{
+		Token:  os.Getenv("tg_ensemble_bot_token"),
+		Poller: &tele.LongPoller{Timeout: 10 * time.Second},
+	}
 
-	fmt.Println(tgClient)
+	b, err := tele.NewBot(pref)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
-	//fetcher = fetcher.New()
+	process.Do(b)
 
-	//processor = processor.New()
-
-	//consumer.Start(fetcher, processor)
-
+	b.Start()
 }
 
 func Config(path string) config.Config {
