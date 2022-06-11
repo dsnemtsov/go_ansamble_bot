@@ -10,8 +10,10 @@ func NevesomoInlineKeyboard(b *telebot.Bot) *tele.ReplyMarkup {
 	selector := &tele.ReplyMarkup{}
 
 	btnText := selector.Data("Текст", "text", "")
-	btnAudio := selector.Data("Аудио", "audio", "")
+	btnAudio := selector.Data("Youtube", "audio", "")
 	btnTracks := selector.Data("Партии", "tracks", "")
+
+	btnAudio.URL = "https://youtu.be/gHjzgbxFoSw"
 
 	selector.Inline(
 		selector.Row(btnText, btnAudio, btnTracks),
