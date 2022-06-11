@@ -6,9 +6,7 @@ import (
 	tele "gopkg.in/telebot.v3"
 	"gopkg.in/yaml.v3"
 	"log"
-	"net/http"
 	"os"
-	"time"
 )
 
 const configPath = "config.yml"
@@ -16,9 +14,19 @@ const configPath = "config.yml"
 func main() {
 	//cfg := Config(configPath)
 
+	//pref := tele.Settings{
+	//	Token:  os.Getenv("tg_ensemble_bot_token"),
+	//	Poller: &tele.LongPoller{Timeout: 10 * time.Second},
+	//}
+
+	webhook := &tele.Webhook{
+		Listen:   os.Getenv("PORT"),
+		Endpoint: &tele.WebhookEndpoint{PublicURL: "https://goansamblebot.herokuapp.com"},
+	}
+
 	pref := tele.Settings{
 		Token:  os.Getenv("tg_ensemble_bot_token"),
-		Poller: &tele.LongPoller{Timeout: 10 * time.Second},
+		Poller: webhook,
 	}
 
 	b, err := tele.NewBot(pref)
@@ -26,7 +34,7 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	//go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 
 	process.Do(b)
 
