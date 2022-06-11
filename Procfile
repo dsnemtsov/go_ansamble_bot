@@ -1,1 +1,1 @@
-web: bin/go_ensemble_bot
+worker: bin/go_ensemble_bot
