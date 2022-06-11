@@ -6,6 +6,7 @@ import (
 	tele "gopkg.in/telebot.v3"
 	"gopkg.in/yaml.v3"
 	"log"
+	"net/http"
 	"os"
 	"time"
 )
@@ -25,7 +26,7 @@ func main() {
 		log.Fatal(err)
 		return
 	}
-	//go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 
 	process.Do(b)
 
