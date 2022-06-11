@@ -21,7 +21,7 @@ func main() {
 
 	webhook := &tele.Webhook{
 		Listen:   os.Getenv("PORT"),
-		Endpoint: &tele.WebhookEndpoint{PublicURL: "https://goansamblebot.herokuapp.com"},
+		Endpoint: &tele.WebhookEndpoint{PublicURL: "https://goensemblebot.herokuapp.com"},
 	}
 
 	pref := tele.Settings{
