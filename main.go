@@ -27,7 +27,7 @@ func main() {
 		return
 	}
 
-	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	go http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 
 	process.Do(b)
 
