@@ -1,8 +1,12 @@
 package keyboard
 
-import tele "gopkg.in/telebot.v3"
+import (
+	"go_ensemble_bot/util"
+	"gopkg.in/telebot.v3"
+	tele "gopkg.in/telebot.v3"
+)
 
-func NevesomoInlineKeyboard() *tele.ReplyMarkup {
+func NevesomoInlineKeyboard(b *telebot.Bot) *tele.ReplyMarkup {
 	selector := &tele.ReplyMarkup{}
 
 	btnText := selector.Data("Текст", "text", "")
@@ -12,6 +16,10 @@ func NevesomoInlineKeyboard() *tele.ReplyMarkup {
 	selector.Inline(
 		selector.Row(btnText, btnAudio, btnTracks),
 	)
+
+	b.Handle(&btnText, func(c tele.Context) error {
+		return c.Send(util.SongTextMessage("Nevesomo"))
+	})
 
 	return selector
 }

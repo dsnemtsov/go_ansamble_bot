@@ -16,7 +16,7 @@ func Do(b *telebot.Bot) {
 	})
 
 	b.Handle("/nevesomo", func(c tele.Context) error {
-		return c.Send("В. Меладзе - Невесомо", keyboard.NevesomoInlineKeyboard())
+		return c.Send("К. Меладзе - Невесомо", keyboard.NevesomoInlineKeyboard(b))
 	})
 
 }
