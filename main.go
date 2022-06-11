@@ -20,7 +20,7 @@ func main() {
 	//}
 
 	webhook := &tele.Webhook{
-		Listen:   os.Getenv("PORT"),
+		Listen:   ":" + os.Getenv("PORT"),
 		Endpoint: &tele.WebhookEndpoint{PublicURL: "https://goensemblebot.herokuapp.com"},
 	}
 
