@@ -11,21 +11,21 @@ func NevesomoInlineKeyboard(b *telebot.Bot) *tele.ReplyMarkup {
 
 	btnText := selector.Data("Текст", "text", "")
 	btnAudio := selector.Data("Youtube", "audio", "")
-	btnTracks := selector.Data("Партии", "tracks", "")
+	//btnTracks := selector.Data("Партии", "tracks", "")
 
 	btnAudio.URL = "https://youtu.be/gHjzgbxFoSw"
 
 	selector.Inline(
-		selector.Row(btnText, btnAudio, btnTracks),
+		selector.Row(btnText, btnAudio),
 	)
 
 	b.Handle(&btnText, func(c tele.Context) error {
 		return c.Send(util.SongTextMessage("Nevesomo"))
 	})
 
-	b.Handle(&btnTracks, func(c tele.Context) error {
-		return c.Send("Партии", nevesomoAudioInlineKeyboard(b))
-	})
+	//b.Handle(&btnTracks, func(c tele.Context) error {
+	//	return c.Send("Партии", nevesomoAudioInlineKeyboard(b))
+	//})
 
 	return selector
 }
